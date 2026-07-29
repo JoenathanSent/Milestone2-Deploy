@@ -1,11 +1,6 @@
 import streamlit as st
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
 import matplotlib.image as mpimage
-import plotly.express as px
-import numpy as np
-import statsmodels.api as sm
 
 def run():
     # Membuat title 
