@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.image as mpimage
+from scipy import stats
 
 def run():
     # Membuat title 
@@ -15,6 +16,8 @@ def run():
     # Menampilkan gambar
     data = mpimage.imread('jeshoots-com-eCktzGjC-iU-unsplash-scaled.jpg')
     st.image(data, caption='EDA Kritik Video Game')
+
+    st.write('# Import Library')
 
     st.write('# Data Loading')
     df = pd.read_csv('vgchartz-2024.csv')
