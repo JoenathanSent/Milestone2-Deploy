@@ -1,6 +1,7 @@
 import streamlit as st
 import pickle
 import pandas as pd
+import datetime
 
 with open('best_rfr_model.pkl','rb') as file_1:
   model = pickle.load(file_1)
@@ -13,20 +14,17 @@ def run():
         title = st.text_input('Judul Video Game', value='Judul Video Game')
         console = st.radio('Console', ('PS3','PS4','PS2','X360','XOne','PC','PSP','Wii','PS','DS','2600','GBA','NES','XB','PSN','GEN','PSV','DC','N64','SAT','SNES','GBC','GC','NS','3DS','GB','WiiU','WS','VC','NG','WW','SCD','PCE','XBL','3DO','GG','OSX','Mob','PCFX','Series','All','iOS','5200','And','DSiW','Lynx','Linux','MS','ZXS','ACPC','Amig','7800','DSi','AJ','WinP','iQue','GIZ','VB','Ouya','NGage','AST','MSD','S32X','XS','PS5','Int','CV', 'Arc', 'C64', 'FDS', 'MSX','OR', 'C128', 'CDi', 'CD32', 'BRW', 'FMT', 'ApII', 'Aco', 'BBCM', 'TG16'),index =1)
         genre = st.selectbox('Genre', ('Action','Shooter','Role-Playing','Sports','Platform','Racing','Adventure','Strategy','Misc','Fighting','Puzzle','Simulation','Action-Adventure','Music','Party','MMO','Visual Novel','Education','Sandbox','Board Game'), index=2)
-        st.markdown('---')
         today = datetime.date.today()
         developer = st.text_input('Developer Game', value='Developer Game')
         publisher = st.text_input('Penerbit Game', value='Penerbit Game')
-        na_sales= st.number_input('Penjualan di Amerika Utara', min_value= 0.0, value=50)
-        jp_sales = st.number_input('Penjualan di Jepang', min_value= 0.0, value=50)
-        pal_sales = st.number_input('Penjualan di Eropa dan Afrika', min_value= 0.0, value=50)
-        other_sales = st.number_input('Penjualan di daerah lain', min_value= 0.0, value=50)
-        release_date = st.date_input(label="Select a date",value=today,max_value=today)
-        last_update = st.date_input(label="Select a date",value=release_date,max_value=release_date)
+        na_sales= st.number_input('Prediksi penjualan di Amerika Utara', min_value= 0.0, value=0.0)
+        jp_sales = st.number_input('Prediksi penjualan di Jepang', min_value= 0.0, value=0.0)
+        pal_sales = st.number_input('Prediksi penjualan di Eropa dan Afrika', min_value= 0.0, value=0.0)
+        other_sales = st.number_input('Prediksi penjualan di daerah lain', min_value= 0.0, value=0.0)
+        release_date = st.date_input(label="Select a date",value=today,key="release_date")
+        last_update = st.date_input(label="Select a date",value=release_date,max_value=release_date,key="last_update")
 
         total_sales = na_sales + jp_sales + pal_sales + other_sales
-        
-        submitted = st.form_submit_button('Predict')
 
         data_inf1 = {
             'img': img,
@@ -120,11 +118,10 @@ def run():
 
         data_inf.drop(['img', 'last_update','release_date', 'total_sales', 'publisher', 'title'], axis=1, inplace=True)
         submitted = st.form_submit_button('Predict')
-
     if submitted:
         predict = model.predict(data_inf)
 
-        st.write('## Prediksi nilai kritik: ',predict)
+        st.write('## Prediksi nilai kritik: ',str(float(predict)))
        
 if __name__ == '__main__':
   run()
