@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimage
 import plotly.express as px
 import numpy as np
+import statsmodels.api as sm
 
 def run():
     # Membuat title 
@@ -19,46 +20,6 @@ def run():
     # Menampilkan gambar
     data = mpimage.imread('jeshoots-com-eCktzGjC-iU-unsplash-scaled.jpg')
     st.image(data, caption='EDA Kritik Video Game')
-
-    st.write('# Import Library')
-    # library untuk melakukan perhitungan statistik
-    import numpy as np
-    # library untuk menampilkan gambar grafik
-    import matplotlib.pyplot as plt
-    import seaborn as sns
-    import statsmodels.api as sm
-    # library untuk membaca csv dan fungsi pandas lainnya
-    import pandas as pd
-    # import library untuk perhitungan statistik
-    from scipy import stats
-    # library untuk memisahkan data untuk train-set dan test-set
-    from sklearn.model_selection import train_test_split
-    # library untuk feature scaling
-    from sklearn.preprocessing import MinMaxScaler
-    # library untuk feature encoding
-    from sklearn.preprocessing import OneHotEncoder
-    # library untuk latih model menggunakan Linear Regression, KNN, SVC, Decision Tree, Random Forest, dan Boosting. Karena target data berupa numerik, maka jenis algoritma yang akan digunakan adalah jenis regressor
-    from sklearn.linear_model import LinearRegression
-    from sklearn.neighbors import KNeighborsRegressor
-    from sklearn.svm import SVR
-    from sklearn.tree import DecisionTreeRegressor
-    from sklearn.ensemble import RandomForestRegressor
-    from sklearn.ensemble import AdaBoostRegressor
-    # Library untuk evaluasi asumsi linear Regression
-    from statsmodels.stats.outliers_influence import variance_inflation_factor
-    from statsmodels.stats.stattools import durbin_watson
-    # library untuk evaluasi model dengan metrik MAE
-    from sklearn.metrics import mean_absolute_error, r2_score
-    # library untuk memisahkan kolom kategori dan numerik untuk proses pipeline
-    from sklearn.compose import ColumnTransformer
-    from sklearn.pipeline import Pipeline
-    # library untuk mencari model terbaik dan untuk hyperparameter tuning dengan target data numerik
-    from sklearn.model_selection import KFold, cross_val_score, GridSearchCV
-    # import library untuk menyimpan model
-    import pickle
-    # library untuk menyembunyikan warning
-    import warnings
-    warnings.filterwarnings("ignore")
 
     st.write('# Data Loading')
     df = pd.read_csv('vgchartz-2024.csv')
